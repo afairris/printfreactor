@@ -13,36 +13,36 @@
 #include <stdarg.h>
 #include "libft.h"
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "parse_handlers.h"
 
-static ssize_t	handle_arg(char **format, va_list *args, t_arg *sarg)
+static ssize_t	handle_arguments(char **format, va_list *args, t_arg *sarg)
 {
 	ssize_t		ret;
 	t_handler	handler;
 
 	if ((*(++*format)) == '\0')
 		return (0);
-	if ((ft_printf_parse_flags(format, sarg)) == NULL)
+	if ((parse_flags(format, sarg)) == NULL)
 		return (-1);
-	if ((ft_printf_parse_width(format, args, sarg)) == NULL)
+	if ((parse_width(format, args, sarg)) == NULL)
 		return (-1);
-	if ((ft_printf_parse_precision(format, args, sarg)) == NULL)
+	if ((parse_precision(format, args, sarg)) == NULL)
 		return (-1);
-	if ((ft_printf_parse_length(format, sarg)) == NULL)
+	if ((parse_length(format, sarg)) == NULL)
 		return (-1);
 	if (**format == '\0')
 		return (0);
-	if (ft_printf_get_handler(**format) == NULL)
+	if (get_handler(**format) == NULL)
 		handler = ft_printf_handle_null;
 	else
-		handler = ft_printf_get_handler(**format);
+		handler = get_handler(**format);
 	ret = handler(format, args, sarg);
 	(*format)++;
 	return (ret);
 }
 
-static int		ft_inner_printf(const char *format, va_list *args, size_t chrs)
+static int		inner_loop(const char *format, va_list *args, size_t chrs)
 {
 	char	*next_arg;
 	t_arg	sarg;
@@ -59,15 +59,15 @@ static int		ft_inner_printf(const char *format, va_list *args, size_t chrs)
 	else if (next_arg > format)
 	{
 		ft_putnstr(format, next_arg - format);
-		return (ft_inner_printf(next_arg, args, chrs + (next_arg - format)));
+		return (inner_loop(next_arg, args, chrs + (next_arg - format)));
 	}
 	else
 	{
 		ft_bzero(&sarg, sizeof(sarg));
-		if ((handler_len = handle_arg((char**)&format, args, &sarg)) == -1)
+		if ((handler_len = handle_arguments((char**)&format, args, &sarg)) == -1)
 			return (-1);
 		else
-			return (ft_inner_printf(format, args, chrs + handler_len));
+			return (inner_loop(format, args, chrs + handler_len));
 	}
 }
 
@@ -77,7 +77,7 @@ int				ft_printf(const char *format, ...)
 	int		ret;
 
 	va_start(args, format);
-	ret = ft_inner_printf(format, &args, 0);
+	ret = inner_loop(format, &args, 0);
 	va_end(args);
 	return (ret);
 }

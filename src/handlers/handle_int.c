@@ -13,33 +13,33 @@
 #include <stdarg.h>
 #include <libft.h>
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "utils.h"
 #include <stdint.h>
 
-static intmax_t	get_signed_from_length(va_list *args, t_arg *arg)
+static intmax_t	get_signed_from_len(va_list *args, t_arg *arg)
 {
-	intmax_t	nbr;
+	intmax_t	num;
 
-	nbr = va_arg(*args, intmax_t);
+	num = va_arg(*args, intmax_t);
 	if (arg->length == hh)
-		nbr = (char)nbr;
+		num = (char)num;
 	else if (arg->length == h)
-		nbr = (short int)nbr;
+		num = (short int)num;
 	else if (arg->length == l)
-		nbr = (long int)nbr;
+		num = (long int)num;
 	else if (arg->length == ll)
-		nbr = (long long int)nbr;
+		num = (long long int)num;
 	else if (arg->length == j)
-		nbr = (intmax_t)nbr;
+		num = (intmax_t)num;
 	else if (arg->length == z)
-		nbr = (size_t)nbr;
+		num = (size_t)num;
 	else
-		nbr = (int)nbr;
-	return (nbr);
+		num = (int)num;
+	return (num);
 }
 
-ssize_t			ft_printf_handle_int(char **format, va_list *args, t_arg *arg)
+ssize_t			handle_int(char **format, va_list *args, t_arg *arg)
 {
 	intmax_t				nbr;
 	char					*prefix;
@@ -47,7 +47,7 @@ ssize_t			ft_printf_handle_int(char **format, va_list *args, t_arg *arg)
 	(void)format;
 	if (arg->got_precision)
 		arg->pad_zeroes = 0;
-	nbr = get_signed_from_length(args, arg);
+	nbr = get_signed_from_len(args, arg);
 	if (nbr < 0 || arg->force_sign || arg->blank_sign)
 	{
 		if (nbr < 0)
@@ -61,8 +61,8 @@ ssize_t			ft_printf_handle_int(char **format, va_list *args, t_arg *arg)
 			prefix = " ";
 		else
 			prefix = "";
-		return (ft_printf_nbrforceprefix(nbr, "0123456789", arg, prefix));
+		return (nbrforceprefix(nbr, "0123456789", arg, prefix));
 	}
 	else
-		return (ft_printf_handle_uint(nbr, arg, "0123456789", NULL));
+		return (handle_uint(nbr, arg, "0123456789", NULL));
 }

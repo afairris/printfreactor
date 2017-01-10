@@ -14,7 +14,7 @@
 #include <sys/types.h>
 #include <libft.h>
 
-unsigned int	ft_printf_nbrlen(uintmax_t nbr, char *base)
+unsigned int	printf_nbrlen(uintmax_t nbr, char *base)
 {
 	size_t			base_nbr;
 	unsigned int	i;

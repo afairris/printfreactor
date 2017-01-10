@@ -12,16 +12,16 @@
 
 #include <inttypes.h>
 #include <libft.h>
-#include "handle_funcs.h"
+#include "handle_funcstions.h"
 #include "utils.h"
 
-unsigned int	ft_printf_calc_nbrstrlen(uintmax_t nbr, char *base,
+unsigned int	calc_nbrstrlen(uintmax_t nbr, char *base,
 		char *p, t_arg *arg)
 {
 	unsigned int	nbr_len;
 	unsigned int	nbrstrlen;
 
-	nbr_len = ft_printf_nbrlen(nbr, base);
+	nbr_len = printf_nbrlen(nbr, base);
 	if (nbr == 0 && arg->got_precision && arg->precision == 0)
 		nbrstrlen = 0;
 	else if (arg->got_precision)

@@ -12,9 +12,9 @@
 
 #include <libft.h>
 #include <stdarg.h>
-#include "handle_funcs.h"
+#include "handle_functions.h"
 
-char	*ft_printf_parse_flags(char **format, t_arg *arg)
+char	*parse_flags(char **format, t_arg *arg)
 {
 	if (**format == '#' || **format == '0' || **format == '-' || **format == '+'
 		|| **format == ' ')
@@ -32,13 +32,13 @@ char	*ft_printf_parse_flags(char **format, t_arg *arg)
 		(*format)++;
 		if (arg->right_pad)
 			arg->pad_zeroes = 0;
-		return (ft_printf_parse_flags(format, arg));
+		return (parse_flags(format, arg));
 	}
 	else
 		return (*format);
 }
 
-char	*ft_printf_parse_width(char **format, va_list *list, t_arg *arg)
+char	*parse_width(char **format, va_list *list, t_arg *arg)
 {
 	int	got;
 
@@ -65,7 +65,7 @@ char	*ft_printf_parse_width(char **format, va_list *list, t_arg *arg)
 	return (*format);
 }
 
-char	*ft_printf_parse_precision(char **format, va_list *list, t_arg *arg)
+char	*parse_precision(char **format, va_list *list, t_arg *arg)
 {
 	int prec;
 
@@ -94,7 +94,7 @@ char	*ft_printf_parse_precision(char **format, va_list *list, t_arg *arg)
 		return (*format);
 }
 
-char	*ft_printf_parse_length(char **format, t_arg *arg)
+char	*parse_length(char **format, t_arg *arg)
 {
 	if (**format == 'h' && *(*format + 1) == 'h')
 	{

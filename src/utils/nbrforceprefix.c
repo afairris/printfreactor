@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "utils.h"
 
-ssize_t	ft_printf_nbrforceprefix(uintmax_t nbr,
+ssize_t	nbrforceprefix(uintmax_t nbr,
 		char *base, t_arg *arg, char *prefix)
 {
 	unsigned	nbr_len;

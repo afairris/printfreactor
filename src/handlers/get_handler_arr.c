@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include <libft.h>
 
-static void	setup_arr(t_handler *handlers)
+static void	setup_array(t_handler *handlers)
 {
 	handlers['%'] = &ft_printf_handle_escape;
 	handlers['s'] = &ft_printf_handle_str;
@@ -35,7 +35,7 @@ static void	setup_arr(t_handler *handlers)
 	handlers['n'] = &ft_printf_handle_charswritten;
 }
 
-t_handler	ft_printf_get_handler(char c)
+t_handler	get_handler(char c)
 {
 	static t_handler	*handlers = NULL;
 
@@ -43,7 +43,7 @@ t_handler	ft_printf_get_handler(char c)
 	{
 		handlers = ft_memalloc(sizeof(*handlers) * 256);
 		if (handlers != NULL)
-			setup_arr(handlers);
+			setup_array(handlers);
 	}
 	return (handlers[(int)c]);
 }

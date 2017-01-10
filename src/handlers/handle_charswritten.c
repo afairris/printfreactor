@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include <libft.h>
 #include "utils.h"
 
-ssize_t	ft_printf_handle_charswritten(char **format, va_list *args, t_arg *arg)
+ssize_t	handle_charswritten(char **format, va_list *args, t_arg *arg)
 {
 	(void)format;
 	(void)args;

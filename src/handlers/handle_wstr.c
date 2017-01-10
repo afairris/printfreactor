@@ -13,26 +13,26 @@
 #include <stdarg.h>
 #include <libft.h>
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "utils.h"
 
-static size_t	calc_wstrlen(wchar_t *str, int precision, size_t i)
+static size_t	calculate_wstrlen(wchar_t *str, int precision, size_t i)
 {
 	if (*str == '\0' || precision == 0)
 		return (i);
 	else if (*str <= 0x7F)
-		return (calc_wstrlen(str + 1, precision - 1, i + 1));
+		return (calculate_wstrlen(str + 1, precision - 1, i + 1));
 	else if (*str <= 0x7FF && precision >= 2)
-		return (calc_wstrlen(str + 1, precision - 2, i + 2));
+		return (calculate_wstrlen(str + 1, precision - 2, i + 2));
 	else if (*str <= 0xFFFF && precision >= 3)
-		return (calc_wstrlen(str + 1, precision - 3, i + 3));
+		return (calculate_wstrlen(str + 1, precision - 3, i + 3));
 	else if (*str <= 0x10FFFF && precision >= 4)
-		return (calc_wstrlen(str + 1, precision - 4, i + 4));
+		return (calculate_wstrlen(str + 1, precision - 4, i + 4));
 	else
 		return (i);
 }
 
-static size_t	ft_wstrlen(wchar_t *str)
+static size_t	wstrlen(wchar_t *str)
 {
 	size_t i;
 
@@ -52,7 +52,7 @@ static size_t	ft_wstrlen(wchar_t *str)
 	return (i);
 }
 
-ssize_t			ft_printf_handle_wstr(char **format, va_list *args, t_arg *arg)
+ssize_t			handle_wstr(char **format, va_list *args, t_arg *arg)
 {
 	wchar_t	*str;
 	size_t	strlen;
@@ -62,12 +62,12 @@ ssize_t			ft_printf_handle_wstr(char **format, va_list *args, t_arg *arg)
 	str = va_arg(*args, wchar_t*);
 	if (str == NULL)
 		str = L"(null)";
-	strlen = arg->got_precision ? calc_wstrlen(str, arg->precision, 0) :
-			ft_wstrlen(str);
+	strlen = arg->got_precision ? calculate_wstrlen(str, arg->precision, 0) :
+			wstrlen(str);
 	if (arg->got_width && !arg->right_pad)
-		ft_printf_width_pad(strlen, arg->width, arg->pad_zeroes ? '0' : ' ');
+		width_pad(strlen, arg->width, arg->pad_zeroes ? '0' : ' ');
 	ft_putnwstr(str, strlen);
 	if (arg->got_width && arg->right_pad)
-		ft_printf_width_pad(strlen, arg->width, ' ');
+		width_pad(strlen, arg->width, ' ');
 	return (arg->got_width ? FT_MAX(strlen, arg->width) : strlen);
 }

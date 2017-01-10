@@ -12,7 +12,7 @@
 
 #include <libft.h>
 
-void	ft_printf_width_pad(int nbrstrlen, int width, char padwith)
+void	width_pad(int nbrstrlen, int width, char padwith)
 {
 	while (nbrstrlen < width)
 	{

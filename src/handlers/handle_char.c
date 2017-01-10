@@ -13,21 +13,21 @@
 #include <stdarg.h>
 #include <libft.h>
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "utils.h"
 
-ssize_t	ft_printf_handle_char(char **format, va_list *args, t_arg *arg)
+ssize_t	handle_char(char **format, va_list *args, t_arg *arg)
 {
 	(void)format;
 	if (arg->length == l)
-		return (ft_printf_handle_wchar(format, args, arg));
+		return (handle_wchar(format, args, arg));
 	else
 	{
 		if (arg->got_width && !arg->right_pad)
-			ft_printf_width_pad(1, arg->width, arg->pad_zeroes ? '0' : ' ');
+			width_pad(1, arg->width, arg->pad_zeroes ? '0' : ' ');
 		ft_putchar(va_arg(*args, int));
 		if (arg->got_width && arg->right_pad)
-			ft_printf_width_pad(1, arg->width, ' ');
+			width_pad(1, arg->width, ' ');
 		return (arg->got_width ? ft_max(arg->width, 1) : 1);
 	}
 }

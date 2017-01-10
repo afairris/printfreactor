@@ -13,10 +13,10 @@
 #include <stdarg.h>
 #include <libft.h>
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "utils.h"
 
-ssize_t	ft_printf_handle_wchar(char **format, va_list *args, t_arg *arg)
+ssize_t	handle_wchar(char **format, va_list *args, t_arg *arg)
 {
 	wchar_t		chr;
 	unsigned	chr_len;
@@ -34,9 +34,9 @@ ssize_t	ft_printf_handle_wchar(char **format, va_list *args, t_arg *arg)
 	else
 		chr_len = 0;
 	if (arg->got_width && !arg->right_pad)
-		ft_printf_width_pad(chr_len, arg->width, arg->pad_zeroes ? '0' : ' ');
+		width_pad(chr_len, arg->width, arg->pad_zeroes ? '0' : ' ');
 	ft_putwchar(chr);
 	if (arg->got_width && arg->right_pad)
-		ft_printf_width_pad(chr_len, arg->width, arg->pad_zeroes ? '0' : ' ');
+		width_pad(chr_len, arg->width, arg->pad_zeroes ? '0' : ' ');
 	return (arg->got_width ? FT_MAX(chr_len, arg->width) : chr_len);
 }

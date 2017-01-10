@@ -13,9 +13,9 @@
 #include <stdint.h>
 #include <sys/types.h>
 #include <stdarg.h>
-#include "handle_funcs.h"
+#include "handle_funcstions.h"
 
-uintmax_t	ft_printf_get_unsigned_from_length(va_list *args, t_arg *arg)
+uintmax_t	get_unsigned_from_length(va_list *args, t_arg *arg)
 {
 	uintmax_t	nbr;
 

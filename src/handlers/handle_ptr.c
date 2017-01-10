@@ -13,11 +13,11 @@
 #include <stdarg.h>
 #include <libft.h>
 #include "ft_printf.h"
-#include "handle_funcs.h"
+#include "handle_functions.h"
 #include "utils.h"
 #include <stdint.h>
 
-ssize_t	ft_printf_handle_ptr(char **format, va_list *args, t_arg *arg)
+ssize_t	handle_ptr(char **format, va_list *args, t_arg *arg)
 {
 	char		*base;
 	uintmax_t	nbr;
@@ -27,6 +27,6 @@ ssize_t	ft_printf_handle_ptr(char **format, va_list *args, t_arg *arg)
 	if (arg->got_precision)
 		arg->pad_zeroes = 0;
 	base = "0123456789abcdef";
-	nbr = ft_printf_get_unsigned_from_length(args, arg);
-	return (ft_printf_nbrforceprefix(nbr, base, arg, "0x"));
+	nbr = get_unsigned_from_length(args, arg);
+	return (nbrforceprefix(nbr, base, arg, "0x"));
 }
