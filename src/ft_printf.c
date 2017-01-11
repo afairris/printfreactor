@@ -34,7 +34,7 @@ static ssize_t	handle_arguments(char **format, va_list *args, t_arg *sarg)
 	if (**format == '\0')
 		return (0);
 	if (get_handler(**format) == NULL)
-		handler = ft_printf_handle_null;
+		handler = handle_null;
 	else
 		handler = get_handler(**format);
 	ret = handler(format, args, sarg);

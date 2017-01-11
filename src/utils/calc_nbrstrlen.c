@@ -12,7 +12,7 @@
 
 #include <inttypes.h>
 #include <libft.h>
-#include "handle_funcstions.h"
+#include "handle_functions.h"
 #include "utils.h"
 
 unsigned int	calc_nbrstrlen(uintmax_t nbr, char *base,
