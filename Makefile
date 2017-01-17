@@ -95,6 +95,7 @@ $(NAME): $(OBJS)
 
 clean:
 	$(RM) $(OBJS)
+	$(RM) -rf obj
 
 libfttest: $(NAME) obj/main.o
 	$(CC) -o $@ obj/main.o -L. -lftprintf

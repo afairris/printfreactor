@@ -46,7 +46,7 @@ static int		inner_loop(const char *format, va_list *args, size_t chrs)
 {
 	char	*next_arg;
 	t_arg	sarg;
-	ssize_t	handler_len;
+	ssize_t	han_len;
 
 	next_arg = ft_strchr(format, '%');
 	if (*format == '\0')
@@ -64,10 +64,10 @@ static int		inner_loop(const char *format, va_list *args, size_t chrs)
 	else
 	{
 		ft_bzero(&sarg, sizeof(sarg));
-		if ((handler_len = handle_arguments((char**)&format, args, &sarg)) == -1)
+		if ((han_len = handle_arguments((char**)&format, args, &sarg)) == -1)
 			return (-1);
 		else
-			return (inner_loop(format, args, chrs + handler_len));
+			return (inner_loop(format, args, chrs + han_len));
 	}
 }
 
