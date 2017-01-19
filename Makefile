@@ -12,7 +12,7 @@
 
 NAME = libftprintf.a
 
-C_INCLUDE_PATH += include/ libft/
+C_INCLUDE_PATH = include/
 
 CFLAGS += -Wall -Wextra -Werror
 
@@ -20,28 +20,28 @@ CFLAGS += $(foreach d, $(C_INCLUDE_PATH), -I$d)
 
 SRCS = src/ft_printf.c \
 	   src/parse_handlers.c \
-	   src/utils/get_unsigned_from_length.c \
-	   src/utils/width_pad.c \
-	   src/utils/nbrlen.c \
-	   src/utils/calc_nbrstrlen.c \
-	   src/utils/nbrforceprefix.c \
-	   src/handlers/get_handler_arr.c \
-	   src/handlers/generic_handle_unsigned.c \
-	   src/handlers/handle_null.c \
-	   src/handlers/handle_char.c \
-	   src/handlers/handle_escape.c \
-	   src/handlers/handle_hex.c \
-	   src/handlers/handle_int.c \
-	   src/handlers/handle_long.c \
-	   src/handlers/handle_octal.c \
-	   src/handlers/handle_ptr.c \
-	   src/handlers/handle_str.c \
-	   src/handlers/handle_unsigned.c \
-	   src/handlers/handle_wchar.c \
-	   src/handlers/handle_binary.c \
-	   src/handlers/handle_charswritten.c \
-	   src/handlers/handle_float.c \
-	   src/handlers/handle_wstr.c
+	   src/get_unsigned_from_length.c \
+	   src/width_pad.c \
+	   src/nbrlen.c \
+	   src/calc_nbrstrlen.c \
+	   src/nbrforceprefix.c \
+	   src/get_handler_arr.c \
+	   src/generic_handle_unsigned.c \
+	   src/handle_null.c \
+	   src/handle_char.c \
+	   src/handle_escape.c \
+	   src/handle_hex.c \
+	   src/handle_int.c \
+	   src/handle_long.c \
+	   src/handle_octal.c \
+	   src/handle_ptr.c \
+	   src/handle_str.c \
+	   src/handle_unsigned.c \
+	   src/handle_wchar.c \
+	   src/handle_binary.c \
+	   src/handle_charswritten.c \
+	   src/handle_float.c \
+	   src/handle_wstr.c
 
 LIBFT_FUNS =	putchar_fd \
 				putchar_fd \
@@ -95,7 +95,6 @@ $(NAME): $(OBJS)
 
 clean:
 	$(RM) $(OBJS)
-	$(RM) -rf obj
 
 libfttest: $(NAME) obj/main.o
 	$(CC) -o $@ obj/main.o -L. -lftprintf

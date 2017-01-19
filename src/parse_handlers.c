@@ -85,7 +85,7 @@ char	*parse_precision(char **format, va_list *list, t_arg *arg)
 		else
 		{
 			while (ft_isdigit(**format))
-				arg->precision = arg->precision * 10 + (*(*format)++ - '0');
+				arg->precision = (arg->precision * 10) + (*((*format)++) - 48);
 			arg->got_precision = 1;
 			return (*format);
 		}

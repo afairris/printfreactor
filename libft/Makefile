@@ -100,6 +100,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(AR) -rcs $(NAME) $?
+	clear
 
 clean:
 	$(RM) $(OBJS)
